@@ -1,5 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
+
 const galleryEl = document.querySelector('.gallery')
 const galleryMarkup = createGalleryList(galleryItems)
 
@@ -34,7 +35,7 @@ function createModal(event) {
     if (event.key === " ") {
         instance.close()
     }
-})
+},{once:true})
     }
 }
 
