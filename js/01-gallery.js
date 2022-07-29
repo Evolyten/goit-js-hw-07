@@ -19,24 +19,31 @@ function onClick(e) {
     }
     createModal(e)
    
-   
+}
+
+let instance = 0;
+const options ={
+	
+	closable: true,
+	
+	className: '',
+	
+	onShow: (instance) => {document.addEventListener('keydown',modalCloseBySpace)},
+	
+	onClose: (instance) => {document.removeEventListener('keydown',modalCloseBySpace )}
 }
 
 function createModal(event) {
-    const instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" >`)
+    instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" >`,options)
     instance.show() 
     const visible = instance.visible()
     
-    if (visible) {
-    document.addEventListener('keydown', event => {
-        event.preventDefault(); 
-        
-    if (event.key === " ") {
-        instance.close()
-    }
-},{once:true})
-    }
 }
 
 
+function modalCloseBySpace(event) {
+      event.preventDefault(); 
+        if (event.key === " ") {
+        instance.close()}
+}
